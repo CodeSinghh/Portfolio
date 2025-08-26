@@ -18,7 +18,7 @@ export default function Home() {
                 <div key={article.id} 
                      className="animate-in fade-in slide-in-from-bottom duration-700" 
                      style={{ animationDelay: `${index * 150}ms` }}>
-                  <ArticleCard article={article} />
+                  <ArticleCard article={{ ...article, body: article.body ?? "" }} />
                 </div>
               ))}
             </div>

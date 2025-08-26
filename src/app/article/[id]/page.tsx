@@ -37,7 +37,7 @@ export default function ArticlePage({ params }: { params: { id: string } }) {
             </div>
             
             <div className="space-y-8 font-headline">
-              {article.sections.map((section, index) => {
+              {article.sections?.map((section, index) => {
                 switch (section.type) {
                   case "introduction":
                     return (
@@ -60,11 +60,12 @@ export default function ArticlePage({ params }: { params: { id: string } }) {
                   case "bullets":
                     return (
                       <ul key={index} className="space-y-3 list-disc pl-6">
-                        {section.items.map((item, itemIndex) => (
-                          <li key={itemIndex} className="text-lg/relaxed">
-                            {item}
-                          </li>
-                        ))}
+                        {Array.isArray(section.items) &&
+                          section.items.map((item, itemIndex) => (
+                            <li key={itemIndex} className="text-lg/relaxed">
+                              {item}
+                            </li>
+                          ))}
                       </ul>
                     );
                   default:
